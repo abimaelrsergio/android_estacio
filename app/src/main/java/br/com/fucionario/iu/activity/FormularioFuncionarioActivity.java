@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import br.com.fucionario.R;
+import br.com.fucionario.model.Funcionario;
 
 public class FormularioFuncionarioActivity extends AppCompatActivity {
 
@@ -28,6 +28,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 String nome = campoNome.getText().toString();
                 String telefone = campoTelefone.getText().toString();
                 String email = campoEmail.getText().toString();
+                Funcionario funcionario;
             }
         });
     }
