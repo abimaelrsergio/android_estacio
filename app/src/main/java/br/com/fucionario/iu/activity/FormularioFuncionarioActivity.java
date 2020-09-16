@@ -28,7 +28,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 String nome = campoNome.getText().toString();
                 String telefone = campoTelefone.getText().toString();
                 String email = campoEmail.getText().toString();
-                Funcionario funcionario;
+                Funcionario funcionario = new Funcionario(nome, telefone, email);
             }
         });
     }
