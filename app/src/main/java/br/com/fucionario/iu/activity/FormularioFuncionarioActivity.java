@@ -39,6 +39,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 startActivity(new Intent(FormularioFuncionarioActivity.this, ListaFuncionariosActivity.class));
             }
         });
+
     }
 }
 
