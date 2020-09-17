@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fucionario.R;
+import br.com.fucionario.dao.FuncionarioDAO;
 import br.com.fucionario.model.Funcionario;
 
 public class FormularioFuncionarioActivity extends AppCompatActivity {
@@ -17,6 +18,8 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
+
+        final FuncionarioDAO dao = new FuncionarioDAO();
 
         final EditText campoNome = findViewById(R.id.activity_formulario_funcionario_nome);
         final EditText campoTelefone = findViewById(R.id.activity_formulario_funcionario_telefone);
@@ -30,12 +33,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 String telefone = campoTelefone.getText().toString();
                 String email = campoEmail.getText().toString();
                 Funcionario funcionario = new Funcionario(nome, telefone, email);
-                Toast.makeText(FormularioFuncionarioActivity.this,
-                               funcionario.getNome() + "," +
-                               funcionario.getTelefone() + "," +
-                               funcionario.getEmail(),
-                               Toast.LENGTH_LONG
-                ).show();
+                dao.salvar(funcionario);
             }
         });
     }
