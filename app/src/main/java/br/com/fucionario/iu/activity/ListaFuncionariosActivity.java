@@ -1,11 +1,15 @@
 package br.com.fucionario.iu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +28,16 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
         setTitle("Lista Funcionarios");
+
+        FloatingActionButton botaoNovoFuncionario = findViewById(R.id.activity_lista_funcionarios_fab_novo_funcionario);
+        botaoNovoFuncionario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //                       Origem              Destino
+                startActivity(new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class));
+            }
+        });
+
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         listaDeFuncionarios.setAdapter(
                 new ArrayAdapter<>(this,
