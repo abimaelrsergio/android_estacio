@@ -18,13 +18,13 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
+    private final FuncionarioDAO dao = new FuncionarioDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
         setTitle("Cadastro de Novo Funcionario");
-        final FuncionarioDAO dao = new FuncionarioDAO();
         inicializarCampos();
         Button botaoSalvar = findViewById(R.id.activity_formulario_funcionario_botao_salvar);
 
@@ -32,7 +32,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Funcionario funcionario = criarFuncionario();
-                salvarFuncionario(funcionario, dao);
+                salvarFuncionario(funcionario);
             }
         });
 
@@ -44,7 +44,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.activity_formulario_funcionario_email);
     }
 
-    private void salvarFuncionario(Funcionario funcionario, FuncionarioDAO dao) {
+    private void salvarFuncionario(Funcionario funcionario) {
         dao.salvar(funcionario);
         finish();
     }
