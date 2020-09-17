@@ -35,8 +35,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 String email = campoEmail.getText().toString();
                 Funcionario funcionario = new Funcionario(nome, telefone, email);
                 dao.salvar(funcionario);
-                //                       Origem                              Destino
-                startActivity(new Intent(FormularioFuncionarioActivity.this, ListaFuncionariosActivity.class));
+                finish();
             }
         });
 

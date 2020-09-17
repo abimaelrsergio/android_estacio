@@ -24,24 +24,24 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_funcionarios);
-
-        FuncionarioDAO funcionarioDao = new FuncionarioDAO();
-
         setTitle("Lista Funcionarios");
-
         FloatingActionButton botaoNovoFuncionario = findViewById(R.id.activity_lista_funcionarios_fab_novo_funcionario);
         botaoNovoFuncionario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                       Origem              Destino
                 startActivity(new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class));
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FuncionarioDAO funcionarioDao = new FuncionarioDAO();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         listaDeFuncionarios.setAdapter(
                 new ArrayAdapter<>(this,
-                             android.R.layout.simple_list_item_1, funcionarioDao.getAll()));
+                        android.R.layout.simple_list_item_1, funcionarioDao.getAll()));
 
     }
 }
