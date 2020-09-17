@@ -2,6 +2,7 @@ package br.com.fucionario.iu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,8 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 String email = campoEmail.getText().toString();
                 Funcionario funcionario = new Funcionario(nome, telefone, email);
                 dao.salvar(funcionario);
+                //                       Origem                              Destino
+                startActivity(new Intent(FormularioFuncionarioActivity.this, ListaFuncionariosActivity.class));
             }
         });
     }
