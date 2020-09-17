@@ -19,7 +19,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
-
+        setTitle("Cadastro de Novo Funcionario");
         final FuncionarioDAO dao = new FuncionarioDAO();
 
         final EditText campoNome = findViewById(R.id.activity_formulario_funcionario_nome);
