@@ -15,30 +15,45 @@ import br.com.fucionario.model.Funcionario;
 
 public class FormularioFuncionarioActivity extends AppCompatActivity {
 
+    private EditText campoNome;
+    private EditText campoTelefone;
+    private EditText campoEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
         setTitle("Cadastro de Novo Funcionario");
         final FuncionarioDAO dao = new FuncionarioDAO();
-
-        final EditText campoNome = findViewById(R.id.activity_formulario_funcionario_nome);
-        final EditText campoTelefone = findViewById(R.id.activity_formulario_funcionario_telefone);
-        final EditText campoEmail = findViewById(R.id.activity_formulario_funcionario_email);
+        inicializarCampos();
         Button botaoSalvar = findViewById(R.id.activity_formulario_funcionario_botao_salvar);
 
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String nome = campoNome.getText().toString();
-                String telefone = campoTelefone.getText().toString();
-                String email = campoEmail.getText().toString();
-                Funcionario funcionario = new Funcionario(nome, telefone, email);
-                dao.salvar(funcionario);
-                finish();
+                Funcionario funcionario = criarFuncionario();
+                salvarFuncionario(funcionario, dao);
             }
         });
 
+    }
+
+    private void inicializarCampos() {
+        campoNome = findViewById(R.id.activity_formulario_funcionario_nome);
+        campoTelefone = findViewById(R.id.activity_formulario_funcionario_telefone);
+        campoEmail = findViewById(R.id.activity_formulario_funcionario_email);
+    }
+
+    private void salvarFuncionario(Funcionario funcionario, FuncionarioDAO dao) {
+        dao.salvar(funcionario);
+        finish();
+    }
+
+    private Funcionario criarFuncionario() {
+        String nome = campoNome.getText().toString();
+        String telefone = campoTelefone.getText().toString();
+        String email = campoEmail.getText().toString();
+        return new Funcionario(nome, telefone, email);
     }
 }
 
