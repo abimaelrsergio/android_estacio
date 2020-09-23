@@ -2,9 +2,12 @@ package br.com.fucionario.iu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,8 +52,12 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     private void buscarListaFuncionarios() {
         FuncionarioDAO funcionarioDao = new FuncionarioDAO();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
-        listaDeFuncionarios.setAdapter(
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_1, funcionarioDao.getAll()));
+        listaDeFuncionarios.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, funcionarioDao.getAll()));
+        listaDeFuncionarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Posição do Funcionario", "" + position);
+            }
+        });
     }
 }
