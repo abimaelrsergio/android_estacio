@@ -14,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import br.com.fucionario.R;
 import br.com.fucionario.dao.FuncionarioDAO;
+import br.com.fucionario.model.Funcionario;
 
 public class ListaFuncionariosActivity extends AppCompatActivity {
 
@@ -51,12 +54,20 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private void buscarListaFuncionarios() {
         FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+        final List<Funcionario> funcionarios = funcionarioDao.getAll();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
-        listaDeFuncionarios.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, funcionarioDao.getAll()));
+        listaDeFuncionarios.setAdapter(
+                new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_1,
+                        funcionarios));
         listaDeFuncionarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Posição do Funcionario", "" + position);
+                Funcionario funcionario = funcionarios.get(position);
+                Intent irParaFormulario = new Intent(
+                        ListaFuncionariosActivity.this,
+                        FormularioFuncionarioActivity.class);
+                startActivity(irParaFormulario);
             }
         });
     }
