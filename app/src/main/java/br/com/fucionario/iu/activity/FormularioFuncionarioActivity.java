@@ -15,6 +15,7 @@ import br.com.fucionario.model.Funcionario;
 
 public class FormularioFuncionarioActivity extends AppCompatActivity {
 
+    public static final String TITULO_APPBAR = "Cadastro de Novo Funcionario";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
@@ -24,10 +25,13 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
-        setTitle("Cadastro de Novo Funcionario");
+        setTitle(TITULO_APPBAR);
         inicializarCampos();
-        Button botaoSalvar = findViewById(R.id.activity_formulario_funcionario_botao_salvar);
+        configurarBotaoSalvarFuncionario();
+    }
 
+    private void configurarBotaoSalvarFuncionario(){
+        Button botaoSalvar = findViewById(R.id.activity_formulario_funcionario_botao_salvar);
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -35,7 +39,6 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
                 salvarFuncionario(funcionario);
             }
         });
-
     }
 
     private void inicializarCampos() {
