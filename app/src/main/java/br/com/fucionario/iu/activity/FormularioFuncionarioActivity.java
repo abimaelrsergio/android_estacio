@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +44,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                criarFuncionario();
+                prepararFuncionario();
                 if (funcionario.isValidId()){
                     dao.editar(funcionario);
                 } else {
@@ -62,7 +61,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.activity_formulario_funcionario_email);
     }
 
-    private void criarFuncionario() {
+    private void prepararFuncionario() {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
