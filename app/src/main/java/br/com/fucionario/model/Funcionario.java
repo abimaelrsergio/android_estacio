@@ -9,10 +9,17 @@ public class Funcionario implements Serializable {
     private String telefone;
     private String email;
 
+    public Funcionario(){
+    }
+
     public Funcionario(String nome, String telefone, String email) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
@@ -41,6 +48,10 @@ public class Funcionario implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean isValidId(){
+        return id > 0;
     }
 
     public String toString() {

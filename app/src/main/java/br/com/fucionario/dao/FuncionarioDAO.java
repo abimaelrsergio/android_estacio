@@ -19,4 +19,8 @@ public class FuncionarioDAO {
         return new ArrayList<>(funcionarios); // cópia
     }
 
+    public void editar(Funcionario funcionario) {
+            // int index = funcionarios.indexOf(funcionario);
+            funcionarios.set((funcionario.getId() - 1) , funcionario);
+    }
 }

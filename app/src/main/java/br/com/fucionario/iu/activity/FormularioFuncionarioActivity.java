@@ -30,11 +30,13 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         inicializarCampos();
         configurarBotaoSalvarFuncionario();
         Intent dados = getIntent();
-        funcionario = (Funcionario) dados.getSerializableExtra("funcionario");
-        if (funcionario != null) {
+        if (dados.hasExtra("funcionario")) {
+            funcionario = (Funcionario) dados.getSerializableExtra("funcionario");
             campoNome.setText(funcionario.getNome());
             campoEmail.setText(funcionario.getEmail());
             campoTelefone.setText(funcionario.getTelefone());
+        } else {
+            funcionario = new Funcionario();
         }
     }
 
@@ -43,7 +45,13 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                criarFuncionario();
+                if (funcionario.isValidId()){
+                    dao.editar(funcionario);
+                } else {
+                    dao.salvar(funcionario);
+                }
+                finish();
             }
         });
     }
@@ -54,12 +62,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.activity_formulario_funcionario_email);
     }
 
-    private void salvarFuncionario(Funcionario funcionario) {
-        dao.salvar(funcionario);
-        finish();
-    }
-
-    private Funcionario criarFuncionario() {
+    private void criarFuncionario() {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
