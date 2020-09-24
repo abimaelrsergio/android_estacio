@@ -64,9 +64,8 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Funcionario funcionario = funcionarios.get(position);
-                Intent irParaFormulario = new Intent(
-                        ListaFuncionariosActivity.this,
-                        FormularioFuncionarioActivity.class);
+                Intent irParaFormulario = new Intent(ListaFuncionariosActivity.this,FormularioFuncionarioActivity.class);
+                irParaFormulario.putExtra("funcionario", funcionario);
                 startActivity(irParaFormulario);
             }
         });

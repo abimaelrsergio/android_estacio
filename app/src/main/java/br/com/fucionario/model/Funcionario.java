@@ -1,6 +1,8 @@
 package br.com.fucionario.model;
 
-public class Funcionario {
+import java.io.Serializable;
+
+public class Funcionario implements Serializable {
 
     private final String nome;
     private final String telefone;
