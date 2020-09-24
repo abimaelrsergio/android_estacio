@@ -28,8 +28,8 @@ public class FuncionarioDAO {
             }
         }
         if (funcionarioEncontrado != null) {
-            int posicaoDoAluno = funcionarios.indexOf(funcionarioEncontrado);
-            funcionarios.set(posicaoDoAluno, funcionario);
+            int posicao = funcionarios.indexOf(funcionarioEncontrado);
+            funcionarios.set(posicao, funcionario);
         }
     }
 }
