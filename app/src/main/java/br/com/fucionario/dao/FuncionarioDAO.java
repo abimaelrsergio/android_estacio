@@ -9,18 +9,27 @@ public class FuncionarioDAO {
     private final static List<Funcionario> funcionarios = new ArrayList<>();
     private static int contadorDeIds = 1;
 
-    public void salvar(Funcionario funcionario){
+    public void salvar(Funcionario funcionario) {
         funcionario.setId(contadorDeIds);
         funcionarios.add(funcionario);
         contadorDeIds++;
     }
 
-    public List<Funcionario> getAll(){
+    public List<Funcionario> getAll() {
         return new ArrayList<>(funcionarios); // cópia
     }
 
     public void editar(Funcionario funcionario) {
-            // int index = funcionarios.indexOf(funcionario);
-            funcionarios.set((funcionario.getId() - 1) , funcionario);
+
+        Funcionario funcionarioEncontrado = null;
+        for (Funcionario f : funcionarios) {
+            if (f.getId() == funcionario.getId()) {
+                funcionarioEncontrado = f;
+            }
+        }
+        if (funcionarioEncontrado != null) {
+            int posicaoDoAluno = funcionarios.indexOf(funcionarioEncontrado);
+            funcionarios.set(posicaoDoAluno, funcionario);
+        }
     }
 }

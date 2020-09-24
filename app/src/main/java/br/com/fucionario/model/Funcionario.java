@@ -1,6 +1,7 @@
 package br.com.fucionario.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Funcionario implements Serializable {
 
@@ -57,4 +58,5 @@ public class Funcionario implements Serializable {
     public String toString() {
         return nome;
     }
+
 }
