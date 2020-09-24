@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     private EditText campoTelefone;
     private EditText campoEmail;
     private final FuncionarioDAO dao = new FuncionarioDAO();
+    private Funcionario funcionario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,12 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         inicializarCampos();
         configurarBotaoSalvarFuncionario();
         Intent dados = getIntent();
+        funcionario = (Funcionario) dados.getSerializableExtra("funcionario");
+        if (funcionario != null) {
+            campoNome.setText(funcionario.getNome());
+            campoEmail.setText(funcionario.getEmail());
+            campoTelefone.setText(funcionario.getTelefone());
+        }
     }
 
     private void configurarBotaoSalvarFuncionario(){
@@ -35,8 +43,7 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Funcionario funcionario = criarFuncionario();
-                salvarFuncionario(funcionario);
+
             }
         });
     }
@@ -56,7 +63,10 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
-        return new Funcionario(nome, telefone, email);
+
+        funcionario.setNome(nome);
+        funcionario.setEmail(email);
+        funcionario.setTelefone(telefone);
     }
 }
 

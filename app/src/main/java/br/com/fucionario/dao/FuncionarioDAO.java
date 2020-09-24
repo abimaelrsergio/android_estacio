@@ -7,9 +7,12 @@ import br.com.fucionario.model.Funcionario;
 
 public class FuncionarioDAO {
     private final static List<Funcionario> funcionarios = new ArrayList<>();
+    private static int contadorDeIds = 1;
 
     public void salvar(Funcionario funcionario){
+        funcionario.setId(contadorDeIds);
         funcionarios.add(funcionario);
+        contadorDeIds++;
     }
 
     public List<Funcionario> getAll(){
