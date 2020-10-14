@@ -55,7 +55,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         final List<Funcionario> funcionarios = funcionarioDao.getAll();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         criarAdapter(funcionarios, listaDeFuncionarios);
-        criarListener(funcionarios, listaDeFuncionarios);
+        criarListener(funcionarios, listaDeFuncionarios);;
     }
 
     private void criarListener(final List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
