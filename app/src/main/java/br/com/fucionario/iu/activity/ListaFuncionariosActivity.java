@@ -2,12 +2,10 @@ package br.com.fucionario.iu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +21,7 @@ import br.com.fucionario.model.Funcionario;
 public class ListaFuncionariosActivity extends AppCompatActivity {
 
     public static final String TITULO_LISTA_APP = "Lista Funcionarios";
+    private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,21 +52,28 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     }
 
     private void buscarListaFuncionarios() {
-        FuncionarioDAO funcionarioDao = new FuncionarioDAO();
         final List<Funcionario> funcionarios = funcionarioDao.getAll();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
-        listaDeFuncionarios.setAdapter(
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_1,
-                        funcionarios));
+        criarAdapter(funcionarios, listaDeFuncionarios);
+        criarListener(funcionarios, listaDeFuncionarios);
+    }
+
+    private void criarListener(final List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
         listaDeFuncionarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Funcionario funcionario = funcionarios.get(position);
-                Intent irParaFormulario = new Intent(ListaFuncionariosActivity.this,FormularioFuncionarioActivity.class);
+                Intent irParaFormulario = new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class);
                 irParaFormulario.putExtra("funcionario", funcionario);
                 startActivity(irParaFormulario);
             }
         });
+    }
+
+    private void criarAdapter(List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
+        listaDeFuncionarios.setAdapter(
+                new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_1,
+                        funcionarios));
     }
 }
