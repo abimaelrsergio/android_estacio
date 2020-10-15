@@ -12,6 +12,10 @@ public class FuncionarioDAO {
     public void salvar(Funcionario funcionario) {
         funcionario.setId(contadorDeIds);
         funcionarios.add(funcionario);
+        updateIds();
+    }
+
+    private void updateIds() {
         contadorDeIds++;
     }
 
