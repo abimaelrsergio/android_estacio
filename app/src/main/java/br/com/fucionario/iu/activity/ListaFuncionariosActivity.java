@@ -62,7 +62,8 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         listaDeFuncionarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("clique demorado", String.valueOf(position));
+                Funcionario funcionario = (Funcionario) parent.getItemAtPosition(position);
+                funcionarioDao.remove(funcionario);
                 return true;
             }
         });
