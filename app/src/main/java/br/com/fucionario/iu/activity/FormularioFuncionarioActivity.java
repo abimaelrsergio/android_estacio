@@ -16,7 +16,8 @@ import static br.com.fucionario.iu.activity.Constantes.CHAVE;
 
 public class FormularioFuncionarioActivity extends AppCompatActivity {
 
-    public static final String TITULO_APPBAR = "Cadastro de Novo Funcionario";
+    private static final String TITULO_APPBAR = "Cadastro de Novo Funcionario";
+    private static final String TITULO_APPBAR_EDITAR = "Editar Funcionário";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
@@ -27,18 +28,27 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
-        setTitle(TITULO_APPBAR);
         inicializarCampos();
         configurarBotaoSalvarFuncionario();
+        carregarFuncionario();
+    }
+
+    private void carregarFuncionario() {
         Intent dados = getIntent();
         if (dados.hasExtra(CHAVE)) {
+            setTitle(TITULO_APPBAR_EDITAR);
             funcionario = (Funcionario) dados.getSerializableExtra(CHAVE);
-            campoNome.setText(funcionario.getNome());
-            campoEmail.setText(funcionario.getEmail());
-            campoTelefone.setText(funcionario.getTelefone());
+            preencherCampos();
         } else {
+            setTitle(TITULO_APPBAR);
             funcionario = new Funcionario();
         }
+    }
+
+    private void preencherCampos() {
+        campoNome.setText(funcionario.getNome());
+        campoEmail.setText(funcionario.getEmail());
+        campoTelefone.setText(funcionario.getTelefone());
     }
 
     private void configurarBotaoSalvarFuncionario(){
