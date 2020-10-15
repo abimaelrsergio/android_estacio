@@ -25,6 +25,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private static final String TITULO_LISTA_APP = "Lista Funcionarios";
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+    private ArrayAdapter<Funcionario> adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Funcionario funcionario = (Funcionario) parent.getItemAtPosition(position);
                 funcionarioDao.remove(funcionario);
+                adapter.remove(funcionario);
                 return true;
             }
         });
@@ -86,9 +88,9 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     }
 
     private void criarAdapter(List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
-        listaDeFuncionarios.setAdapter(
-                new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_1,
-                        funcionarios));
+        adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
+                funcionarios);
+        listaDeFuncionarios.setAdapter(adapter);
     }
 }
