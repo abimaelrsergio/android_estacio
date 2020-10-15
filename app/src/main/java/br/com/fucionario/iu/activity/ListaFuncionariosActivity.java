@@ -37,12 +37,12 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         botaoNovoFuncionario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirFormulario();
+                abrirFormularioInserirFuncionario();
             }
         });
     }
 
-    private void abrirFormulario(){
+    private void abrirFormularioInserirFuncionario(){
         startActivity(new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class));
     }
 
