@@ -20,7 +20,8 @@ import br.com.fucionario.model.Funcionario;
 
 public class ListaFuncionariosActivity extends AppCompatActivity {
 
-    public static final String TITULO_LISTA_APP = "Lista Funcionarios";
+    private static final String TITULO_LISTA_APP = "Lista Funcionarios";
+    private static final String CHAVE = "funcionario";
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
     @Override
@@ -70,7 +71,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private void editarFuncionario(Funcionario funcionario) {
         Intent irParaFormulario = new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class);
-        irParaFormulario.putExtra("funcionario", funcionario);
+        irParaFormulario.putExtra(CHAVE, funcionario);
         startActivity(irParaFormulario);
     }
 
