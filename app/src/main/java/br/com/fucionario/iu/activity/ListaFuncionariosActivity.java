@@ -2,6 +2,7 @@ package br.com.fucionario.iu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -58,6 +59,13 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         criarAdapter(funcionarios, listaDeFuncionarios);
         criarListener(listaDeFuncionarios);
+        listaDeFuncionarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("clique demorado", String.valueOf(position));
+                return true;
+            }
+        });
     }
 
     private void criarListener(ListView listaDeFuncionarios) {
