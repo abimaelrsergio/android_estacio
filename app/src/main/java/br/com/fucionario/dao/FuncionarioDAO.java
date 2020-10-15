@@ -21,15 +21,20 @@ public class FuncionarioDAO {
 
     public void editar(Funcionario funcionario) {
 
+        Funcionario funcionarioEncontrado = findFuncionarioById(funcionario);
+        if (funcionarioEncontrado != null) {
+            int posicao = funcionarios.indexOf(funcionarioEncontrado);
+            funcionarios.set(posicao, funcionario);
+        }
+    }
+
+    private Funcionario findFuncionarioById(Funcionario funcionario) {
         Funcionario funcionarioEncontrado = null;
         for (Funcionario f : funcionarios) {
             if (f.getId() == funcionario.getId()) {
                 funcionarioEncontrado = f;
             }
         }
-        if (funcionarioEncontrado != null) {
-            int posicao = funcionarios.indexOf(funcionarioEncontrado);
-            funcionarios.set(posicao, funcionario);
-        }
+        return funcionarioEncontrado;
     }
 }

@@ -56,15 +56,19 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                prepararFuncionario();
-                if (funcionario.isValidId()){
-                    dao.editar(funcionario);
-                } else {
-                    dao.salvar(funcionario);
-                }
-                finish();
+                fecharFormulario();
             }
         });
+    }
+
+    private void fecharFormulario() {
+        prepararFuncionario();
+        if (funcionario.isValidId()){
+            dao.editar(funcionario);
+        } else {
+            dao.salvar(funcionario);
+        }
+        finish();
     }
 
     private void inicializarCampos() {
