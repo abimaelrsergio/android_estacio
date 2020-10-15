@@ -40,4 +40,11 @@ public class FuncionarioDAO {
         }
         return null;
     }
+
+    public void remove(Funcionario funcionario) {
+        Funcionario funcionarioEncontrado = findFuncionarioById(funcionario);
+        if (funcionarioEncontrado != null) {
+            funcionarios.remove(funcionarioEncontrado);
+        }
+    }
 }
