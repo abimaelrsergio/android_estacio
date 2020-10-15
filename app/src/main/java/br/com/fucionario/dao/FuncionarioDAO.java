@@ -29,12 +29,11 @@ public class FuncionarioDAO {
     }
 
     private Funcionario findFuncionarioById(Funcionario funcionario) {
-        Funcionario funcionarioEncontrado = null;
         for (Funcionario f : funcionarios) {
             if (f.getId() == funcionario.getId()) {
-                funcionarioEncontrado = f;
+                return f;
             }
         }
-        return funcionarioEncontrado;
+        return null;
     }
 }
