@@ -18,10 +18,11 @@ import br.com.fucionario.R;
 import br.com.fucionario.dao.FuncionarioDAO;
 import br.com.fucionario.model.Funcionario;
 
+import static br.com.fucionario.iu.activity.Constantes.CHAVE;
+
 public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private static final String TITULO_LISTA_APP = "Lista Funcionarios";
-    private static final String CHAVE = "funcionario";
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
     @Override
