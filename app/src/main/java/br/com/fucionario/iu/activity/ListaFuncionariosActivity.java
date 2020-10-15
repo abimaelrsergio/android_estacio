@@ -55,14 +55,14 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         final List<Funcionario> funcionarios = funcionarioDao.getAll();
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         criarAdapter(funcionarios, listaDeFuncionarios);
-        criarListener(funcionarios, listaDeFuncionarios);;
+        criarListener(listaDeFuncionarios);
     }
 
-    private void criarListener(final List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
+    private void criarListener(ListView listaDeFuncionarios) {
         listaDeFuncionarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Funcionario funcionario = funcionarios.get(position);
+            public void onItemClick(AdapterView<?> parent, View view, int posicao, long id) {
+                Funcionario funcionario = (Funcionario) parent.getItemAtPosition(posicao);
                 Intent irParaFormulario = new Intent(ListaFuncionariosActivity.this, FormularioFuncionarioActivity.class);
                 irParaFormulario.putExtra("funcionario", funcionario);
                 startActivity(irParaFormulario);
