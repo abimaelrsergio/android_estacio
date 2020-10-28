@@ -3,11 +3,14 @@ package br.com.fucionario.iu.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +38,30 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         configurarBotaoNovoFuncionario();
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.activity_lista_funcionarios_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        CharSequence tituloMenu = item.getTitle();
+        if (tituloMenu.equals("Remover")) {
+            AdapterView.AdapterContextMenuInfo menuInfo =
+                    (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            Funcionario funcionario = adapter.getItem(menuInfo.position);
+            funcionarioDao.remove(funcionario);
+            adapter.remove(funcionario);
+        }
+        if (tituloMenu.equals("Testando")) {
+            Log.i("TESTANDO", "onContextItemSelected: " + tituloMenu);
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
     private void configurarBotaoNovoFuncionario() {
         FloatingActionButton botaoNovoFuncionario = findViewById(R.id.activity_lista_funcionarios_fab_novo_funcionario);
         botaoNovoFuncionario.setOnClickListener(new View.OnClickListener() {
@@ -60,15 +87,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         ListView listaDeFuncionarios = findViewById(R.id.activity_lista_funcionarios);
         criarAdapter(funcionarios, listaDeFuncionarios);
         criarListener(listaDeFuncionarios);
-        listaDeFuncionarios.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Funcionario funcionario = (Funcionario) parent.getItemAtPosition(position);
-                funcionarioDao.remove(funcionario);
-                adapter.remove(funcionario);
-                return true;
-            }
-        });
+        registerForContextMenu(listaDeFuncionarios);
     }
 
     private void criarListener(ListView listaDeFuncionarios) {
