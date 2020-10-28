@@ -58,7 +58,6 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         if (tituloMenu.equals("Testando")) {
             Log.i("TESTANDO", "onContextItemSelected: " + tituloMenu);
         }
-
         return super.onContextItemSelected(item);
     }
 
