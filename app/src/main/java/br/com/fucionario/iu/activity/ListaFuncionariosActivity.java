@@ -47,16 +47,16 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        CharSequence tituloMenu = item.getTitle();
-        if (tituloMenu.equals("Remover")) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.activity_lista_funcionarios_menu_remover) {
             AdapterView.AdapterContextMenuInfo menuInfo =
                     (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             Funcionario funcionario = adapter.getItem(menuInfo.position);
             funcionarioDao.remove(funcionario);
             adapter.remove(funcionario);
         }
-        if (tituloMenu.equals("Testando")) {
-            Log.i("TESTANDO", "onContextItemSelected: " + tituloMenu);
+        if (itemId == R.id.activity_lista_funcionarios_menu_testando) {
+            Log.i("TESTANDO", "onContextItemSelected: " + itemId);
         }
         return super.onContextItemSelected(item);
     }
