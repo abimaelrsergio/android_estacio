@@ -36,10 +36,6 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_funcionarios);
         setTitle(TITULO_LISTA_APP);
         configurarBotaoNovoFuncionario();
-        for (int i = 1; i <= 100; i++) {
-            funcionarioDao.salvar(
-                    new Funcionario("Abimael " + i, "557-54"+i, i +"@gmail.com"));
-        }
     }
 
     @Override
