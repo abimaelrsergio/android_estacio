@@ -1,9 +1,12 @@
 package br.com.fucionario.iu.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +32,22 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_funcionario);
         inicializarCampos();
-        configurarBotaoSalvarFuncionario();
         carregarFuncionario();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_formulario_funcionario_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.activity_formulario_funcionario_menu_salvar) {
+            fecharFormulario();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void carregarFuncionario() {
@@ -49,16 +66,6 @@ public class FormularioFuncionarioActivity extends AppCompatActivity {
         campoNome.setText(funcionario.getNome());
         campoEmail.setText(funcionario.getEmail());
         campoTelefone.setText(funcionario.getTelefone());
-    }
-
-    private void configurarBotaoSalvarFuncionario(){
-        Button botaoSalvar = findViewById(R.id.activity_formulario_funcionario_botao_salvar);
-        botaoSalvar.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                fecharFormulario();
-            }
-        });
     }
 
     private void fecharFormulario() {
