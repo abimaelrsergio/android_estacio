@@ -56,7 +56,7 @@ public class Funcionario implements Serializable {
     }
 
     public String toString() {
-        return nome;
+        return nome + " - " + telefone;
     }
 
 }

@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fucionario.R;
 import br.com.fucionario.dao.FuncionarioDAO;
+import br.com.fucionario.iu.adapter.ListaFuncionariosAdapter;
 import br.com.fucionario.model.Funcionario;
 
 import static br.com.fucionario.iu.activity.Constantes.CHAVE;
@@ -28,7 +33,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private static final String TITULO_LISTA_APP = "Lista Funcionarios";
     private FuncionarioDAO funcionarioDao = new FuncionarioDAO();
-    private ArrayAdapter<Funcionario> adapter;
+    private ListaFuncionariosAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,9 +117,8 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     }
 
     private void criarAdapter(List<Funcionario> funcionarios, ListView listaDeFuncionarios) {
-        adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                funcionarios);
+        adapter = new ListaFuncionariosAdapter(this);
         listaDeFuncionarios.setAdapter(adapter);
     }
 }
+
