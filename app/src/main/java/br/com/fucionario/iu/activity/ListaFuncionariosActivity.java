@@ -36,6 +36,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_funcionarios);
         setTitle(TITULO_LISTA_APP);
         configurarBotaoNovoFuncionario();
+        buscarListaFuncionarios();
     }
 
     @Override
@@ -78,7 +79,11 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        buscarListaFuncionarios();
+        atualizarFuncionarios();
+    }
+
+    private void atualizarFuncionarios() {
+        adapter.clear();
     }
 
     private void buscarListaFuncionarios() {
