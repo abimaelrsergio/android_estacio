@@ -84,6 +84,7 @@ public class ListaFuncionariosActivity extends AppCompatActivity {
 
     private void atualizarFuncionarios() {
         adapter.clear();
+        adapter.addAll(funcionarioDao.getAll());
     }
 
     private void buscarListaFuncionarios() {
