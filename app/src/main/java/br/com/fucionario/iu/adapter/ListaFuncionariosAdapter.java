@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,24 @@ public class ListaFuncionariosAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View viewInflated = LayoutInflater
                 .from(context)
-                .inflate(R.layout.item_funcionario, parent);
-        return null;
+                .inflate(R.layout.item_funcionario, parent, false);
+        Funcionario funcionario = funcionarios.get(position);
+        TextView nomeFunc = viewInflated.findViewById(R.id.item_funcionario_nome);
+        TextView telefoneFunc = viewInflated.findViewById(R.id.item_funcionario_telefone);
+        nomeFunc.setText(funcionario.getNome());
+        telefoneFunc.setText(funcionario.getTelefone());
+        return viewInflated;
+    }
+
+    public void clear() {
+        this.funcionarios.clear();
+    }
+
+    public void addAll(List<Funcionario> funcionarios) {
+        this.funcionarios.addAll(funcionarios);
+    }
+
+    public void remove(Funcionario funcionario){
+        this.funcionarios.remove(funcionario);
     }
 }
